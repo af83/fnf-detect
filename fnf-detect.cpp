@@ -6,6 +6,7 @@
 #include <vector>
 
 
+const double hairOffset = 0.12;
 const double scale = 1.2;
 const int neighbors = 4;
 const int minSize = 32;
@@ -51,6 +52,10 @@ int main(int argc, const char **argv) {
 	cv::CascadeClassifier faceClassifier = cv::CascadeClassifier(faceCascade);
 	faceClassifier.detectMultiScale(img, rects, scale, neighbors, 0, min, max);
 	if (rects.size() > 0) {
+		for (cv::Rect rect : rects) {
+			rect.y -= rect.height * hairOffset;
+			if (rect.y < 0) rect.y = 0;
+		}
 		display(rects, "face");
 		return 0;
 	}
