@@ -28,20 +28,20 @@ fnf-detect <image>
 It will output one face/feature per line, with:
 
 ```
-<w> <h> <x> <y> <type>
-<w> is the width
-<h> is the height
+<x> <y> <w> <h> <type>
 <x> is the X coordinate (from the left)
 <y> is the Y coordinate (from the top)
-<type> is face, body or feature
+<w> is the width
+<h> is the height
+<type> is face, profile, body or feature
 ```
 
 
-Example
--------
+Examples
+--------
 
 ```
-$ fnf-detect image.jpg
+$ ./fnf-detect image.jpg
 302 302 1559 708 face
 ```
 
