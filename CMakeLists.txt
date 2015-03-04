@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 2.6)
+project(fnf-detect CXX)
+find_package(OpenCV REQUIRED)
+add_executable(fnf-detect fnf-detect.cpp)
+target_link_libraries(fnf-detect ${OpenCV_LIBS})
+set(CMAKE_CXX_FLAGS "-std=c++0x ${CMAKE_CXX_FLAGS} -Wall -pedantic -Wextra")
