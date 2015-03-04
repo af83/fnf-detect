@@ -7,9 +7,13 @@
 
 
 const double hairOffset = 0.12;
-const double scale = 1.2;
-const int neighbors = 4;
-const int minSize = 32;
+const double scale = 1.1;
+const int neighbors = 3;
+const int minSize = 48;
+const int maxCorners = 30;
+const double qualityLevel = 0.04;
+const int minDistance = 25;
+const int featureSize = 5;
 
 const char *faceCascade = "/usr/share/opencv/haarcascades/haarcascade_frontalface_alt2.xml";
 const char *profCascade = "/usr/share/opencv/haarcascades/haarcascade_profileface.xml";
@@ -72,6 +76,16 @@ int main(int argc, const char **argv) {
 	if (rects.size() > 0) {
 		display(rects, "body");
 		return 0;
+	}
+
+	std::vector<cv::Point2f> corners;
+	goodFeaturesToTrack(img, corners, maxCorners, qualityLevel, minDistance);
+	for (cv::Point2f corner : corners) {
+		rects.push_back(cv::Rect(corner.x - featureSize/2,
+		                         corner.y - featureSize/2,
+			                 featureSize,
+			                 featureSize));
+		display(rects, "feature");
 	}
 
 	return 0;

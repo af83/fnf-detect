@@ -45,6 +45,20 @@ $ ./fnf-detect image.jpg
 302 302 1559 708 face
 ```
 
+For debugging:
+
+```
+for file in some_dir/*; do
+  name=$(basename "$file")
+  out="out/$name"
+  cp "$file" "$out"
+  ./fnf-detect "$file" | while read x y w h t; do
+  echo $out $t
+    mogrify -gravity NorthWest -region "${w}x${h}+${x}+${y}" \
+      -negate -scale '10%' -scale '1000%' "$out"
+  done
+done
+```
 
 Credits
 -------
