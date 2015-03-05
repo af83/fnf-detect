@@ -33,7 +33,7 @@ It will output one face/feature per line, with:
 <y> is the Y coordinate (from the top)
 <w> is the width
 <h> is the height
-<type> is face, profile, body or feature
+<type> is face, profile or feature
 ```
 
 
@@ -45,20 +45,27 @@ $ ./fnf-detect image.jpg
 302 302 1559 708 face
 ```
 
-For debugging:
+For testing:
 
 ```
-for file in some_dir/*; do
+for file in in/*; do
   name=$(basename "$file")
   out="out/$name"
   cp "$file" "$out"
   ./fnf-detect "$file" | while read x y w h t; do
-  echo $out $t
+    echo $out $t
     mogrify -gravity NorthWest -region "${w}x${h}+${x}+${y}" \
-      -negate -scale '10%' -scale '1000%' "$out"
+      -bordercolor red -border 4 "$out"
   done
 done
 ```
+
+Inspiration
+-----------
+
+* [facedetect](http://www.thregr.org/~wavexx/software/facedetect/)
+* [thumbor](https://github.com/thumbor/thumbor/wiki/Detection-algorithms)
+
 
 Credits
 -------

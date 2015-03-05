@@ -8,19 +8,19 @@
 
 const double hairOffset = 0.12;
 const double scale = 1.1;
-const int neighbors = 3;
+const int neighbors = 4;
 const int minSize = 48;
-const int maxCorners = 30;
-const double qualityLevel = 0.04;
-const int minDistance = 25;
-const int featureSize = 5;
+const int maxCorners = 20;
+const double qualityLevel = 0.05;
+const int minDistance = 30;
+const int featureSize = 15;
 
-const char *faceCascade = "/usr/share/opencv/haarcascades/haarcascade_frontalface_alt2.xml";
+const char *faceCascade = "/usr/share/opencv/lbpcascades/lbpcascade_frontalface.xml";
 const char *profCascade = "/usr/share/opencv/haarcascades/haarcascade_profileface.xml";
-const char *bodyCascade = "/usr/share/opencv/haarcascades/haarcascade_fullbody.xml";
 
 
 void display(std::vector<cv::Rect> &rects, const char *type) {
+	cv::groupRectangles(rects, 0);
 	for (cv::Rect rect : rects) {
 		std::cout
 			<< rect.x << " "
@@ -68,13 +68,6 @@ int main(int argc, const char **argv) {
 	profClassifier.detectMultiScale(img, rects, scale, neighbors, 0, min, max);
 	if (rects.size() > 0) {
 		display(rects, "profile");
-		return 0;
-	}
-
-	cv::CascadeClassifier bodyClassifier = cv::CascadeClassifier(bodyCascade);
-	bodyClassifier.detectMultiScale(img, rects, scale, neighbors, 0, min, max);
-	if (rects.size() > 0) {
-		display(rects, "body");
 		return 0;
 	}
 
