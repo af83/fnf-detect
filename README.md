@@ -3,9 +3,8 @@ Face'n'feature detection
 
 Detect faces and features in images to help cropping them.
 
-It's a simple wrapper over the Haar Cascade classifier of
-[OpenCV](http://opencv.org/). For mobile, you should consider using the LBP
-classifier. It's faster but not as acurate as the Haar classifier.
+It's a simple wrapper over the Haar & LBP Cascade classifiers of
+[OpenCV](http://opencv.org/).
 
 
 Install
