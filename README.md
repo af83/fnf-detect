@@ -45,6 +45,31 @@ $ ./fnf-detect image.jpg
 302 302 1559 708 face
 ```
 
+It can be a lot faster to make a thumbnail of an image and extract faces and
+features from it, and then extrapolate the coordinates. It's just a small bit
+less accurate:
+
+```
+$ convert image.jpg -resize '25%' thumbnail.jpg
+
+$ identify image.jpg
+image.jpg JPEG 3648x2736 3648x2736+0+0 8-bit DirectClass 2.199MB 0.000u 0:00.000
+
+$ identify thumbnail.jpg
+thumbnail.jpg JPEG 912x684 912x684+0+0 8-bit DirectClass 172KB 0.000u 0:00.000
+
+$ time ./fnf-detect image.jpg
+2251 1013 352 352 face
+./fnf-detect image.jpg  1,39s user 0,03s system 454% cpu 0,312 total
+
+$ time ./fnf-detect thumbnail.jpg
+563 253 88 88 face
+./fnf-detect thumbnail.jpg  0,16s user 0,03s system 189% cpu 0,101 total
+
+$ echo $((563 * 4)) $((253 * 4)) $((88 * 4)) $((88 * 4))
+2252 1012 352 352
+```
+
 For testing:
 
 ```

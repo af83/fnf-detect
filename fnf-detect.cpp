@@ -9,7 +9,7 @@
 const double hairOffset = 0.12;
 const double scale = 1.1;
 const int neighbors = 4;
-const int minSize = 48;
+const int minSize = 64;
 const int maxCorners = 20;
 const double qualityLevel = 0.05;
 const int minDistance = 30;
