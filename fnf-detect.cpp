@@ -13,7 +13,7 @@ const int minSize = 64;
 const int maxCorners = 20;
 const double qualityLevel = 0.05;
 const int minDistance = 30;
-const int featureSize = 15;
+const int featureSize = 3;
 
 const char *faceCascade = "/usr/share/opencv/lbpcascades/lbpcascade_frontalface.xml";
 const char *profCascade = "/usr/share/opencv/haarcascades/haarcascade_profileface.xml";
@@ -78,8 +78,8 @@ int main(int argc, const char **argv) {
 		                         corner.y - featureSize/2,
 			                 featureSize,
 			                 featureSize));
-		display(rects, "feature");
 	}
+	display(rects, "feature");
 
 	return 0;
 }
