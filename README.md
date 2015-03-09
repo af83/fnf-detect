@@ -3,8 +3,15 @@ Face'n'feature detection
 
 Detect faces and features in images to help cropping them.
 
-It's a simple wrapper over the Haar & LBP Cascade classifiers of
-[OpenCV](http://opencv.org/).
+There are two versions of this tool:
+
+- One is a simple wrapper around the Haar & LBP Cascade classifiers of
+  [OpenCV](http://opencv.org/)
+- The other is based on a SURF-Cascade Detection from
+  [ccv](http://libccv.org/).
+
+The ccv version detects more faces, but the OpenCV version is faster
+Choose the version that fits you best!
 
 
 Install
@@ -23,6 +30,7 @@ For ccv:
 
 ```
 cd ccv
+apt-get install build-essential libjpeg-dev libpng12-dev
 make ccv
 make
 ```
@@ -80,20 +88,6 @@ $ echo $((563 * 4)) $((253 * 4)) $((88 * 4)) $((88 * 4))
 2252 1012 352 352
 ```
 
-For testing:
-
-```
-for file in in/*; do
-  name=$(basename "$file")
-  out="out/$name"
-  cp "$file" "$out"
-  ./fnf-detect "$file" | while read x y w h t; do
-    echo $out $t
-    mogrify -gravity NorthWest -region "${w}x${h}+${x}+${y}" \
-      -bordercolor red -border 4 "$out"
-  done
-done
-```
 
 Inspiration
 -----------
