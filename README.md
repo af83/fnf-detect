@@ -11,7 +11,7 @@ There are two versions of this tool:
   [ccv](http://libccv.org/).
 
 The ccv version detects more faces, but the OpenCV version is about 3 times
-faster. Choose the version that fits you best!
+faster and also detects features. Choose the version that fits you best!
 
 
 Install
@@ -53,6 +53,8 @@ It will output one face/feature per line, with:
 <h> is the height
 <type> is face, profile or feature
 ```
+
+Note : the ccv version can only detect faces.
 
 
 Examples
