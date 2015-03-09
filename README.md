@@ -10,9 +10,20 @@ It's a simple wrapper over the Haar & LBP Cascade classifiers of
 Install
 -------
 
+For OpenCV:
+
 ```
+cd opencv
 apt-get install build-essential cmake libopencv-dev
 cmake -DCMAKE_BUILD_TYPE=Release .
+make
+```
+
+For ccv:
+
+```
+cd ccv
+make ccv
 make
 ```
 
