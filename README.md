@@ -10,8 +10,8 @@ There are two versions of this tool:
 - The other is based on a SURF-Cascade Detection from
   [ccv](http://libccv.org/).
 
-The ccv version detects more faces, but the OpenCV version is faster
-Choose the version that fits you best!
+The ccv version detects more faces, but the OpenCV version is about 3 times
+faster. Choose the version that fits you best!
 
 
 Install

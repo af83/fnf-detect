@@ -1,6 +1,9 @@
 #include <ccv.h>
 
 
+const double hair_offset = 0.25;
+
+
 int main(int argc, char **argv) {
 	ccv_enable_default_cache();
 	ccv_dense_matrix_t* image = NULL;
@@ -20,7 +23,9 @@ int main(int argc, char **argv) {
 	ccv_array_t* seq = ccv_scd_detect_objects(image, &cascade, 1, ccv_scd_default_params);
 	for (int i = 0; i < seq->rnum; i++) {
 		ccv_comp_t* comp = (ccv_comp_t*) ccv_array_get(seq, i);
-		printf("%d %d %d %d face\n", comp->rect.x, comp->rect.y, comp->rect.width, comp->rect.height);
+		int y = comp->rect.y - hair_offset * comp->rect.height;
+		if (y < 0) y = 0;
+		printf("%d %d %d %d face\n", comp->rect.x, y, comp->rect.width, comp->rect.height);
 	}
 
 	ccv_array_free(seq);
