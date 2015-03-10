@@ -29,7 +29,7 @@ clean:
 distclean: clean
 	-rm -rf $(CCV_PATH)
 
-ccv: $(LIBCCV)
+ccv: $(CCV_PATH)
 	cd $(CCV_PATH) && ./configure && make
 
 $(CCV_PATH): $(CCV_TARBALL)
