@@ -14,6 +14,11 @@ int main(int argc, char **argv) {
 		return -1;
 	}
 
+	if (cascade == NULL) {
+		fprintf(stderr, "Error: can't find the cascade file %s\n", CASCADE_PATH);
+		return -1;
+	}
+
 	ccv_read(argv[1], &image, CCV_IO_GRAY | CCV_IO_ANY_FILE);
 	if (image == NULL) {
 		fprintf(stderr, "Error: can't read %s\n", argv[1]);
